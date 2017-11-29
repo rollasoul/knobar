@@ -1,0 +1,22 @@
+{
+  "name": "knobar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "rotary-client.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rollasoul/knobar.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rollasoul/knobar/issues"
+  },
+  "homepage": "https://github.com/rollasoul/knobar#readme",
+  "dependencies": {
+    "ws": "^3.3.2"
+  }
+}
