@@ -1,7 +1,7 @@
 {
   "name": "knobar",
   "version": "1.0.0",
-  "description": "",
+  "description": "One Paragraph of project description goes here",
   "main": "rotary-client.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/rollasoul/knobar#readme",
   "dependencies": {
+    "serialport": "^6.0.4",
     "ws": "^3.3.2"
-  }
+  },
+  "devDependencies": {}
 }
