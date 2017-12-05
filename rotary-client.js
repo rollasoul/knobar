@@ -12,7 +12,7 @@ const parser = port.pipe(new Readline({ delimiter: '\r\n' }));
 
 parser.on('data', function (data) {
   var input = parseInt(data.toString('ascii'));
-  console.log('Data:', data.toString('ascii'));
+  console.log('Data:', input);
   ws.send(input);
 });
 
