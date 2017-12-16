@@ -33,10 +33,13 @@ parser.on('data', function (data) {
 // repeat the input every 10 seconds if needed to keep websocket alive...
 function repeatToKeepAlive() {
   if (lastInput !== undefined) {
-    if (new Date() - lastSendTime > 10*1000) {
+    var now = new Date();
+    if (now - lastSendTime > 10*1000) {
+      console.log('KeepAlive repeat:', lastInput);
       ws.send(lastInput);
+      lastSendTime = now;
     }
   }
 }
 
-setInterval(repeatToKeepAlive, 1000);
+setInterval(repeatToKeepAlive, 2000);
