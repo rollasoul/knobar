@@ -12,14 +12,23 @@ var port = new SerialPort('/dev/ttyUSB0', {
 var offset = 0;
 var lastInput = offset;
 var lastSendTime = new Date();
+var odd = false;
 
 const parser = port.pipe(new Readline({ delimiter: '\r\n' }));
 
 parser.on('data', function (data) {
   var input = parseInt(data.toString('ascii')) + offset;
-  console.log('Data:', input);
-  ws.send(input);
 
+  if (odd) {
+    // skip b/c:
+    // there's a weird bug(?) where the rotary encoder sends n and n-1
+    // at the same time and it's fucking with the light code
+  } else {
+    console.log('Data:', input);
+    ws.send(input);
+  }
+
+  odd = !odd;
   lastInput = input;
   lastSendTime = new Date();
 });
