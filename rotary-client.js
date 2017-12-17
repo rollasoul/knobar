@@ -9,13 +9,14 @@ var port = new SerialPort('/dev/ttyUSB0', {
     baudRate: 115200
 });
 
-var lastInput;
+var offset = 0;
+var lastInput = offset;
 var lastSendTime = new Date();
 
 const parser = port.pipe(new Readline({ delimiter: '\r\n' }));
 
 parser.on('data', function (data) {
-  var input = parseInt(data.toString('ascii'));
+  var input = parseInt(data.toString('ascii')) + offset;
   console.log('Data:', input);
   ws.send(input);
 
