@@ -1,5 +1,5 @@
 const WebSocket = require('ws');
-const ws = new WebSocket('ws://www.joyrats.com');
+const ws = new WebSocket('wss://www.joyrats.com');
 
 //const ws = new WebSocket('ws://localhost:3000');
 
@@ -12,4 +12,4 @@ function publish() {
   ws.send(input);
 }
 
-setInterval(publish, 100);
+setInterval(publish, 300);
