@@ -9,7 +9,24 @@ var port = new SerialPort('/dev/ttyUSB0', {
     baudRate: 115200
 });
 
+var redis = require('redis');
+var client = redis.createClient("redis://h:pc23ed9d77dcc726f777ea407262234cadd57756de398dc88799d4badcd609517@ec2-34-239-85-133.compute-1.amazonaws.com:57699");
+
+client.on("error", function (err) {
+   console.log("Error " + err);
+});
+// client.set("rotations", "0", redis.print);
+// client.get("rotations", redis.print);
+
 var offset = 0;
+client.get("rotations", function (data) {
+  if (data) {
+    console.log(client.connected);
+    console.log("OFFSET: ", data);
+    offset = data;
+  }
+})
+
 var lastInput = offset;
 var lastSendTime = new Date();
 var odd = false;
@@ -53,3 +70,12 @@ function repeatToKeepAlive() {
 }
 
 setInterval(repeatToKeepAlive, 2000);
+
+
+function updateOffset() {
+  client.set("rotations", lastInput);
+}
+
+setInterval(updateOffset, 20000);
+
+
