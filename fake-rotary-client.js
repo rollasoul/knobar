@@ -7,7 +7,7 @@ const ws = new WebSocket('ws://www.joyrats.com');
 var input = 0;
 
 function publish() {
-  input = (input + 1) % 40;
+  input = (input + 1);
   console.log('Data:', input);
   ws.send(input);
 }
